@@ -15,7 +15,7 @@
           "options": {
             "outputPath": "dist/product-order-app-asgatech",
             "index": "src/index.html",
-            "browser": "src/main.ts",
+            "browser": "src/app/main.ts",
             "polyfills": [
               "zone.js"
             ],
@@ -27,7 +27,7 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles/styles.scss"
             ],
             "scripts": []
           },
@@ -85,7 +85,7 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles/styles.scss"
             ],
             "scripts": []
           }
