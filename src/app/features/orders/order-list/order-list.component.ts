@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { DataService } from '../../../core/services/data.service.ts.service';
-import { Customer } from '../../../shared/models/customer.model';
-import { Order } from '../../../shared/models/order.model';
+import { DataService } from '../../../core/services/data.service';
+import { Customer } from '../../../core/models/customer.model';
+import { Order } from '../../../core/models/order.model';
 import { RouterModule } from '@angular/router';
 
 @Component({

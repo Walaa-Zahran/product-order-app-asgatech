@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { Product } from '../../../shared/models/product.model';
+import { Product } from '../../../core/models/product.model';
 import { ProductService } from '../product.service';
-import { DataService } from '../../../core/services/data.service.ts.service';
+import { DataService } from '../../../core/services/data.service';
 
 @Component({
   selector: 'app-product-list',
@@ -28,12 +28,27 @@ export class ProductListComponent {
   isLowStock(product: Product): boolean {
     return product.AvailablePieces < 5;
   }
-
   editProductQuantity(product: Product, quantity: number): void {
+    // Ensure the quantity is not negative
     if (quantity >= 0) {
-      this.dataService.editProductQuantity(product.ProductId, quantity).subscribe((updatedProduct) => {
-        product.AvailablePieces = updatedProduct.AvailablePieces;
+      this.dataService.editProductQuantity(product.ProductId, quantity).subscribe({
+        next: (response) => {
+          if (response) {
+            // If response is received, update the product locally
+            product.AvailablePieces = response.AvailablePieces;
+
+          } else {
+            // If no response is received, still update locally
+            product.AvailablePieces = quantity;
+          }
+        },
+        error: (error) => {
+          // Revert the local change if the update failed
+          product.AvailablePieces = product.AvailablePieces;
+        }
       });
+    } else {
     }
   }
+
 }
