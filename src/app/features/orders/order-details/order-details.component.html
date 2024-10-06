@@ -1,5 +1,5 @@
-<div class="container" *ngIf="order && customer">
-  <h2>Order Details - {{ order.OrderId }}</h2>
+<div class="container" *ngIf="selectedOrder && customer">
+  <h2>Order Details - {{ selectedOrder.OrderId }}</h2>
 
   <!-- Customer Information Card -->
   <div class="card my-4">
@@ -16,10 +16,16 @@
   <div class="card my-4">
     <div class="card-header">Products in Order</div>
     <ul class="list-group list-group-flush">
-      <li *ngFor="let product of products" class="list-group-item">
+      <li *ngFor="let product of productsInOrder" class="list-group-item">
+        <!-- <img
+          src="{{ product.ProductImg }}"
+          alt="{{ product.ProductName }}"
+          class="img-thumbnail"
+        /> -->
         <strong>{{ product.ProductName }}</strong> -
         {{ product.ProductPrice | currency }} x
-        {{ getProductQuantity(product.ProductId) }}
+        {{ getProductQuantity(product.ProductId) }} =
+        {{ product.ProductPrice * getProductQuantity(product.ProductId) }} $
       </li>
     </ul>
   </div>
@@ -28,7 +34,7 @@
   <div class="card my-4">
     <div class="card-header">Payment</div>
     <div class="card-body">
-      <p><strong>Payment Type:</strong> {{ order.PaymentType }}</p>
+      <p><strong>Payment Type:</strong> {{ selectedOrder.PaymentType }}</p>
       <p>
         <strong>Total Price:</strong>
         {{ calculateTotalOrderPrice() | currency }}

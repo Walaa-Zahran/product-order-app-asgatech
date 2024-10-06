@@ -19,9 +19,9 @@ export class ProductListComponent {
   constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
-    this.dataService.getProducts().subscribe((data: Product[]) => {
-      this.products = data;
-    });
+    // this.dataService.getProducts().subscribe((data: Product[]) => {
+    //   this.products = data;
+    // });
   }
 
   isLowStock(product: Product): boolean {
@@ -29,25 +29,25 @@ export class ProductListComponent {
   }
   editProductQuantity(product: Product, quantity: number): void {
     // Ensure the quantity is not negative
-    if (quantity >= 0) {
-      this.dataService.editProductQuantity(product.ProductId, quantity).subscribe({
-        next: (response) => {
-          if (response) {
-            // If response is received, update the product locally
-            product.AvailablePieces = response.AvailablePieces;
+    // if (quantity >= 0) {
+    //   this.dataService.editProductQuantity(product.ProductId, quantity).subscribe({
+    //     next: (response) => {
+    //       if (response) {
+    //         // If response is received, update the product locally
+    //         product.AvailablePieces = response.AvailablePieces;
 
-          } else {
-            // If no response is received, still update locally
-            product.AvailablePieces = quantity;
-          }
-        },
-        error: (error) => {
-          // Revert the local change if the update failed
-          product.AvailablePieces = product.AvailablePieces;
-        }
-      });
-    } else {
-    }
+    //       } else {
+    //         // If no response is received, still update locally
+    //         product.AvailablePieces = quantity;
+    //       }
+    //     },
+    //     error: (error) => {
+    //       // Revert the local change if the update failed
+    //       product.AvailablePieces = product.AvailablePieces;
+    //     }
+    //   });
+    // } else {
+    // }
   }
 
 }

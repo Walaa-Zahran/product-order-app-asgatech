@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { DataService } from '../../../core/services/data.service';
 import { Customer } from '../../../core/models/customer.model';
 import { Order } from '../../../core/models/order.model';
 import { RouterModule } from '@angular/router';
 import { Product } from '../../../core/models/product.model';
+import { DataService } from '../../../core/services/data.service';
 
 @Component({
   selector: 'app-order-list',
@@ -25,13 +25,13 @@ export class OrderListComponent {
   }
  // Load orders and products data
  private loadOrdersAndProducts(): void {
-  this.dataService.getOrders().subscribe((orders) => {
+  this.dataService.getAllOrders().subscribe((orders: Order[]) => {
     this.orders = orders;
   });
 
-  this.dataService.getProducts().subscribe((products) => {
-    this.products = products;
-  });
+  // this.dataService.getProducts().subscribe((products: Product[]) => {
+  //   this.products = products;
+  // });
 }// Calculate the total price of an order
 calculateOrderPrice(order: Order): number {
   let totalPrice = 0;
