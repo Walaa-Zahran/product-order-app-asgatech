@@ -1,1 +1,29 @@
-<p>order-list works!</p>
+<div class="container">
+  <h1 class="my-4">Orders</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Order Date</th>
+        <th>Customer</th>
+        <th>Payment Type</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.OrderId }}</td>
+        <td>{{ order.OrderDate }}</td>
+        <td>{{ getCustomerName(order.UserId) }}</td>
+        <td>{{ order.PaymentType }}</td>
+        <td>
+          <a
+            [routerLink]="['/order-details', order.OrderId]"
+            class="btn btn-info"
+            >Details</a
+          >
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
