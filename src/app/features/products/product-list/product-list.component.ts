@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Product } from '../../../core/models/product.model';
-import { ProductService } from '../product.service';
 import { DataService } from '../../../core/services/data.service';
 
 @Component({
@@ -9,7 +8,7 @@ import { DataService } from '../../../core/services/data.service';
   standalone: true,
   imports: [CommonModule],
   providers: [
-    ProductService
+    DataService
   ],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss'

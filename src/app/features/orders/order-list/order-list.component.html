@@ -3,19 +3,18 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Order ID</th>
-        <th>Order Date</th>
-        <th>Customer</th>
-        <th>Payment Type</th>
+        <th>Order Id</th>
+        <th>Payment Method</th>
+        <th>Total Price</th>
         <th>Actions</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let order of orders">
         <td>{{ order.OrderId }}</td>
-        <td>{{ order.OrderDate }}</td>
-        <td>{{ getCustomerName(order.UserId) }}</td>
         <td>{{ order.PaymentType }}</td>
+        <!-- Display the calculated total price for each order -->
+        <td>{{ calculateOrderPrice(order) | currency }}</td>
         <td>
           <a
             [routerLink]="['/order-details', order.OrderId]"
