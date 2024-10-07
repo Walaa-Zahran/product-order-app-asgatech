@@ -25,27 +25,24 @@ export class OrderDetailsComponent {
     const orderId = +this.route.snapshot.paramMap.get('id')!;
 
     // Example: Get all orders
-    this.orderService.getAllOrders().subscribe(orders => {
+    this.orderService.getOrders().subscribe(orders => {
       this.orders = orders;
       console.log('All Orders:', orders);
     });
 
     // Example: Get order by ID
-    this.orderService.getOrderById(orderId).subscribe(order => {
+    this.orderService.getOrder(orderId).subscribe(order => {
       this.selectedOrder = order;
-      console.log('Order Details:', order);
     });
 
     // Example: Get products for an order
     this.orderService.getProductsByOrderId(orderId).subscribe(products => {
       this.productsInOrder = products;
-      console.log('Products for Order 1233:', products);
     });
 
     // Example: Get customer details for an order
     this.orderService.getCustomerByOrder(orderId).subscribe(customer => {
       this.customer = customer;
-      console.log('Customer Details for Order 1233:', customer);
     });
   }
   // Get the product quantity in the order

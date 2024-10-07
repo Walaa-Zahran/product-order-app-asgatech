@@ -19,7 +19,7 @@ export class ProductListComponent {
   constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
-    this.dataService.getAllProducts().subscribe((data: Product[]) => {
+    this.dataService.getProducts().subscribe((data: Product[]) => {
       this.products = data;
     });
   }

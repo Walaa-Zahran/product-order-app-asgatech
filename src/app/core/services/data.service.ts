@@ -11,6 +11,7 @@ import { Customer } from '../models/customer.model';
   providedIn: 'root'
 })
 export class DataService {
+  products: Product[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -20,20 +21,20 @@ export class DataService {
   private usersUrl = 'assets/json/users.json';
 
   // Step 1: Get all orders
-  getAllOrders(): Observable<Order[]> {
+ getOrders(): Observable<Order[]> {
     return this.http.get<Order[]>(this.ordersUrl);
   }
 
   // Step 2: Get a single order by ID
-  getOrderById(orderId: number): Observable<Order | undefined> {
-    return this.getAllOrders().pipe(
+  getOrder(orderId: number): Observable<Order | undefined> {
+    return this.getOrders().pipe(
       map(orders => orders.find(order => order.OrderId === orderId))
     );
   }
 
   // Step 3: Get all products for a specific order
   getProductsByOrderId(orderId: number): Observable<(ProductInOrder & Product|any)[]> {
-    return this.getOrderById(orderId).pipe(
+    return this.getOrder(orderId).pipe(
       switchMap(order => {
         if (!order) return [];
 
@@ -50,12 +51,12 @@ export class DataService {
     );
   }
 //Get All products
-  getAllProducts(): Observable<Product[]> {
+  getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.productsUrl);
   }
   // Step 4: Get customer details using the order's user ID
   getCustomerByOrder(orderId: number): Observable<Customer | undefined> {
-    return this.getOrderById(orderId).pipe(
+    return this.getOrder(orderId).pipe(
       switchMap(order => {
         if (!order) return [];
 

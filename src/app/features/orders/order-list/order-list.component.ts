@@ -26,11 +26,11 @@ export class OrderListComponent {
   }
  // Load orders and products data
  private loadOrdersAndProducts(): void {
-  this.dataService.getAllOrders().subscribe((orders: Order[]) => {
+  this.dataService.getOrders().subscribe((orders: Order[]) => {
     this.orders = orders;
   });
 
-  this.dataService.getAllProducts().subscribe((products: Product[]) => {
+  this.dataService.getProducts().subscribe((products: Product[]) => {
     this.products = products;
   });
 }
