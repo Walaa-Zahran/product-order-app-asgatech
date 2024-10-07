@@ -49,7 +49,10 @@ export class DataService {
       })
     );
   }
-
+//Get All products
+  getAllProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.productsUrl);
+  }
   // Step 4: Get customer details using the order's user ID
   getCustomerByOrder(orderId: number): Observable<Customer | undefined> {
     return this.getOrderById(orderId).pipe(

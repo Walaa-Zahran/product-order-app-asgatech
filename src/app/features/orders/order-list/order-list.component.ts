@@ -1,3 +1,4 @@
+import { ProductInOrder } from './../../../core/models/order.model';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Customer } from '../../../core/models/customer.model';
@@ -29,13 +30,14 @@ export class OrderListComponent {
     this.orders = orders;
   });
 
-  // this.dataService.getProducts().subscribe((products: Product[]) => {
-  //   this.products = products;
-  // });
-}// Calculate the total price of an order
+  this.dataService.getAllProducts().subscribe((products: Product[]) => {
+    this.products = products;
+  });
+}
+// Calculate the total price of an order
 calculateOrderPrice(order: Order): number {
   let totalPrice = 0;
-
+console.log('order.products',order.Products)
   for (const orderProduct of order.Products) {
     // Find the product details from products array
     const product = this.products.find((p) => p.ProductId === orderProduct.ProductId);
